@@ -14,7 +14,7 @@
 			"value": "hello_flask_dev"
 		}],
 		"essential": true,
-		"image": "postgres:2-alpine",
+		"image": "postgres:12-alpine",
 		"memory": 100,
 		"mountPoints":[{
 			"containerPath": "/var/lib/postgresql/data/",
