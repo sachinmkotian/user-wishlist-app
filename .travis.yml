@@ -12,7 +12,7 @@ deploy:
   provider: elasticbeanstalk
   region: ap-south-1
   app: my-user-wishlist-app
-  end: Myuserwishlistapp-env
+  end: Myuserwishlistapp-env-1
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   bucket_name: "multi-container-wishlist-app-s3"
