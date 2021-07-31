@@ -1,11 +1,20 @@
 from flask import Flask, render_template, request
 import redis
+import os
 
 
 app = Flask(__name__)
 
+POSTGRES_USER = os.environ['POSTGRES_USER']
+POSTGRES_PASSWORD = os.environ['POSTGRES_PASSWORD']
+POSTGRES_DB = os.environ['POSTGRES_DB']
+POSTGRES_HOST = os.environ['POSTGRES_HOST']
+POSTGRES_PORT = os.environ['POSTGRES_PORT']
+REDIS_PORT = os.environ['REDIS_PORT']
+REDIS_HOST = os.environ['REDIS_HOST']
+
 # postgresql://username:password@host:post/database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://hello_flask:hello_flask@db:5432/hello_flask_dev'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}'
 
 from models import db,UserFavs
 
@@ -14,7 +23,7 @@ with app.app_context():
     db.create_all()
     db.session.commit()
 
-red = redis.Redis(host='redis',port=6379)
+red = redis.Redis(host=REDIS_HOST,port=REDIS_PORT)
 
 @app.route("/")
 def main():
